@@ -7,8 +7,6 @@ import copy
 if __name__ == "__main__":
     print("--- Sudoku Generator and Solver ---")
     
-    # Điều chỉnh độ khó bằng cách thay đổi số lượng ô cần loại bỏ (ví dụ: 20=dễ, 50=trung bình, 60=khó)
-    # Đang để độ klhó ngẫu nhiên trong khoảng 40-60
     #puzzleDifficulty = random.randint(40, 60)
     puzzleDifficulty = 60
     puzzle = SudokuGenerator.createPuzzle(puzzleDifficulty)
@@ -32,7 +30,6 @@ with open("SudokuResult.txt", "a") as f:
                 f.write(cell + " ")
     f.write("-" * 25 + "\n")
     print("\n[+] Searching for the solution...")
-    # Sử dụng một bản sao để câu đố gốc không bị người giải sửa đổi
     solutionBoard = copy.deepcopy(puzzle)
 
     solved, elapsed_time = SudokuBoard.timeFunction(SudokuSolver.solveSudoku)(solutionBoard)
@@ -61,4 +58,5 @@ with open("SudokuResult.txt", "a") as f:
     f.write("-" * 25 + "\n")
     f.write(f"\n New Puzzle Difficulty: {puzzleDifficulty} \n")
     f.write(f"\nSolved in {elapsed_time:.6f} seconds\n")
+
     f.write("-" * 40 + "\n")
