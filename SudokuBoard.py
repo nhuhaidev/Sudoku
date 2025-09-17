@@ -83,7 +83,7 @@ class SudokuBoard:
             if SudokuBoard.isValidMove(board, num, (row, col)):
                 board[row][col] = num
                 solutionCount += SudokuBoard.countSolutions(board)
-                board[row][col] = 0 # Quay lui
+                board[row][col] = 0 
 
              
                 if solutionCount > 1:
