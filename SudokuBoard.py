@@ -10,7 +10,7 @@ class SudokuBoard:
             result = func(*args, **kwargs)
             endTime = time.perf_counter()
             elapsed = endTime - startTime
-            print(f"[DEBUG] Function '{func.__name__}' executed in {elapsed:.6f} seconds.")
+            print(f"Function '{func.__name__}' executed in {elapsed:.6f} seconds.")
         
             return result, elapsed   
         return wrapper
