@@ -27,7 +27,7 @@ class SudokuBoard:
                 if j % 3 == 0 and j != 0:
                     print(" | ", end="")
                 
-                # In số hoặc khoảnh trống cho các ô trống
+                
                 if j == 8:
                     print(num if num != 0 else "0")
                 else:
@@ -68,10 +68,7 @@ class SudokuBoard:
     
     @staticmethod
     def countSolutions(board):
-        """
-        Đếm số lượng giải pháp cho một bảng Sudoku nhất định.
-        Sử dụng đệ quy và quay lui để tìm tất cả các giải pháp.
-        """
+        
         emptyCell = SudokuBoard.findEmptyCell(board)
         if not emptyCell:
             return 1 
