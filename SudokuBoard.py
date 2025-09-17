@@ -4,25 +4,20 @@ import time
 class SudokuBoard:
     @staticmethod
     def timeFunction(func):
-        """
-        Hàm để đo thời gian thực thi của một hàm.
-        """
+    
         def wrapper(*args, **kwargs):
             startTime = time.perf_counter()
             result = func(*args, **kwargs)
             endTime = time.perf_counter()
             elapsed = endTime - startTime
             print(f"[DEBUG] Function '{func.__name__}' executed in {elapsed:.6f} seconds.")
-            #  Trả cả result và elapsed_time
+        
             return result, elapsed   
         return wrapper
 
     @staticmethod   
     def printBoard(board):
-        """
-        In bảng Sudoku ở định dạng dễ đọc.
-        Thêm các dòng để phân tách các khối 3x3.
-        """
+       
         print("-" * 25)
         for i, row in enumerate(board):
             if i % 3 == 0 and i != 0:
@@ -40,9 +35,7 @@ class SudokuBoard:
         print("-" * 25)
     @staticmethod
     def findEmptyCell(board):
-        """
-        Tìm ô trống đầu tiên trong bảng (giá trị là 0).
-        """
+       
         for row in range(9):
             for col in range(9):
                 if board[row][col] == 0:
@@ -50,23 +43,19 @@ class SudokuBoard:
         return None
     @staticmethod
     def isValidMove(board, num, position):
-        """
-        Kiểm tra xem việc đặt một số vào một vị trí có hợp lệ theo quy tắc Sudoku hay không.
-
-        """
+      
         row, col = position
 
-        # Kiểm tra hàng
+      
         if num in board[row]:
             return False
 
-        # 2. Kiểm tra cột
+   
         for i in range(9):
             if board[i][col] == num:
                 return False
 
-        # 3. Kiểm tra khối 3x3
-        # Tìm góc trên bên trái của khối 3x3
+       
         startRow = row - row % 3
         startCol = col - col % 3
 
@@ -85,7 +74,7 @@ class SudokuBoard:
         """
         emptyCell = SudokuBoard.findEmptyCell(board)
         if not emptyCell:
-            return 1  # Đã tìm thấy một giải pháp hoàn chỉnh
+            return 1 
 
         row, col = emptyCell
         solutionCount = 0
@@ -96,8 +85,9 @@ class SudokuBoard:
                 solutionCount += SudokuBoard.countSolutions(board)
                 board[row][col] = 0 # Quay lui
 
-                # Tối ưu hóa: Nếu tìm thấy nhiều hơn một giải pháp, chúng ta có thể dừng sớm.
+             
                 if solutionCount > 1:
                     return 2
 
         return solutionCount
+
